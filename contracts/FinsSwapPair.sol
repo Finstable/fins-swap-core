@@ -8,7 +8,7 @@ import './interfaces/IERC20.sol';
 import './interfaces/IFinsSwapFactory.sol';
 import './interfaces/IFinsSwapCallee.sol';
 
-contract UniswapV2Pair is IFinsSwapPair, FinsSwapERC20 {
+contract FinsSwapPair is IFinsSwapPair, FinsSwapERC20 {
     using SafeMath  for uint;
     using UQ112x112 for uint224;
 

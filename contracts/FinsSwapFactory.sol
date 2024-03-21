@@ -7,7 +7,7 @@ contract FinsSwapFactory is IFinsSwapFactory {
     address public feeTo;
     address public feeToSetter;
     bytes32 public constant INIT_CODE_PAIR_HASH =
-        keccak256(abi.encodePacked(type(UniswapV2Pair).creationCode));
+        keccak256(abi.encodePacked(type(FinsSwapPair).creationCode));
 
     mapping(address => mapping(address => address)) public getPair;
     address[] public allPairs;
@@ -40,7 +40,7 @@ contract FinsSwapFactory is IFinsSwapFactory {
             getPair[token0][token1] == address(0),
             "UniswapV2: PAIR_EXISTS"
         ); // single check is sufficient
-        bytes memory bytecode = type(UniswapV2Pair).creationCode;
+        bytes memory bytecode = type(FinsSwapPair).creationCode;
         bytes32 salt = keccak256(abi.encodePacked(token0, token1));
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
